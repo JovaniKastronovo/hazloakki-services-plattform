@@ -74,11 +74,6 @@ public class NegocioEntity implements Serializable {
 		negocioEntity.setDomicilio(cuentaDto.getDomicilio());
 		negocioEntity.setLatitud(cuentaDto.getLatitud());
 		negocioEntity.setLongitud(cuentaDto.getLongitud());
-		negocioEntity.setServicioDomicilio(cuentaDto.isServicioDomicilio());
-		negocioEntity.setEstacionamiento(cuentaDto.isEstacionamiento());
-		negocioEntity.setInternet(cuentaDto.isInternet());
-		negocioEntity.setReservaciones(cuentaDto.isReservaciones());
-		negocioEntity.setModoLlevar(cuentaDto.isModoLlevar());
 		negocioEntity.setEstatus(cuentaDto.isEstatus());
 		negocioEntity.setCodigoPostal(cuentaDto.getCodigoPostal());
 		negocioEntity.setDelegacion(cuentaDto.getDelegacion());
@@ -102,11 +97,6 @@ public class NegocioEntity implements Serializable {
 		negocioDto.setDomicilio(getDomicilio());
 		negocioDto.setLatitud(getLatitud());
 		negocioDto.setLongitud(getLongitud());
-		negocioDto.setServicioDomicilio(isServicioDomicilio());
-		negocioDto.setEstacionamiento(isEstacionamiento());
-		negocioDto.setInternet(isInternet());
-		negocioDto.setReservaciones(isReservaciones());
-		negocioDto.setModoLlevar(isModoLlevar());
 		negocioDto.setEstatus(isEstatus());
 		negocioDto.setCodigoPostal(getCodigoPostal());
 		negocioDto.setDelegacion(getDelegacion());

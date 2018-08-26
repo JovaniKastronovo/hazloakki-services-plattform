@@ -3,11 +3,15 @@ package com.hazloakki.negocio.entity;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "negocios_metodo_pago")
-public class NegocioMetodoPagoEntity {
+public class MetodoPagoEntity {
 
+
+	@Version
+	private Long version;
 	@EmbeddedId
 	private NegocioMetodoPagoKey negocioMetodoPagoKey;
 

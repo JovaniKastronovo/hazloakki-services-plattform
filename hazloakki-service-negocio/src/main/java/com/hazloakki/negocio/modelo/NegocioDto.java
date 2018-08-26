@@ -1,5 +1,7 @@
 package com.hazloakki.negocio.modelo;
 
+import java.util.List;
+
 /**
  * @author Jovani Arzate 2018-07-01 HazloAkki para Empresas v.1
  *
@@ -15,18 +17,16 @@ public class NegocioDto {
 	private String domicilio;
 	private Double latitud;
 	private Double longitud;
-	private boolean servicioDomicilio;
-	private boolean estacionamiento;
-	private boolean internet;
-	private boolean reservaciones;
-	private boolean estatus;
-	private boolean modoLlevar;
 	private String idCuenta;
 	private String codigoPostal;
 	private String delegacion;
 	private String colonia;
 	private String calle;
 	private String numeroExterior;
+	private boolean estatus;
+	private List<ServiciosDto> serviciosDtos;
+	private List<MetodoPagoDto> metodoPagoDtos;
+	private List<TipoTarjetaDto> tipoTarjetaDtos;
 
 	public String getId() {
 		return id;
@@ -100,54 +100,6 @@ public class NegocioDto {
 		this.longitud = longitud;
 	}
 
-	public boolean isServicioDomicilio() {
-		return servicioDomicilio;
-	}
-
-	public void setServicioDomicilio(boolean servicioDomicilio) {
-		this.servicioDomicilio = servicioDomicilio;
-	}
-
-	public boolean isEstacionamiento() {
-		return estacionamiento;
-	}
-
-	public void setEstacionamiento(boolean estacionamiento) {
-		this.estacionamiento = estacionamiento;
-	}
-
-	public boolean isInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
-	}
-
-	public boolean isReservaciones() {
-		return reservaciones;
-	}
-
-	public void setReservaciones(boolean reservaciones) {
-		this.reservaciones = reservaciones;
-	}
-
-	public boolean isEstatus() {
-		return estatus;
-	}
-
-	public void setEstatus(boolean estatus) {
-		this.estatus = estatus;
-	}
-
-	public boolean isModoLlevar() {
-		return modoLlevar;
-	}
-
-	public void setModoLlevar(boolean modoLlevar) {
-		this.modoLlevar = modoLlevar;
-	}
-
 	public String getIdCuenta() {
 		return idCuenta;
 	}
@@ -194,6 +146,38 @@ public class NegocioDto {
 
 	public void setNumeroExterior(String numeroExterior) {
 		this.numeroExterior = numeroExterior;
+	}
+
+	public List<ServiciosDto> getServiciosDtos() {
+		return serviciosDtos;
+	}
+
+	public void setServiciosDtos(List<ServiciosDto> serviciosDtos) {
+		this.serviciosDtos = serviciosDtos;
+	}
+
+	public List<MetodoPagoDto> getMetodoPagoDtos() {
+		return metodoPagoDtos;
+	}
+
+	public void setMetodoPagoDtos(List<MetodoPagoDto> metodoPagoDtos) {
+		this.metodoPagoDtos = metodoPagoDtos;
+	}
+
+	public List<TipoTarjetaDto> getTipoTarjetaDtos() {
+		return tipoTarjetaDtos;
+	}
+
+	public void setTipoTarjetaDtos(List<TipoTarjetaDto> tipoTarjetaDtos) {
+		this.tipoTarjetaDtos = tipoTarjetaDtos;
+	}
+
+	public boolean isEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(boolean estatus) {
+		this.estatus = estatus;
 	}
 
 }

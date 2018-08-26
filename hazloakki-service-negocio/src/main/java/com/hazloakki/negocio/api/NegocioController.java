@@ -73,6 +73,7 @@ public class NegocioController {
 	public void borrarNegocio(@PathVariable("id") String idNegocio) {
 		cuentaService.borrarNegocio(idNegocio);
 	}
+
 	
 	/*
 	 * Solicitud de servicios Remotos
