@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hazloakki.negocio.api.CategoriasNegociosException;
+import com.hazloakki.negocio.categorias.api.CategoriasNegociosException;
 import com.hazloakki.negocio.entity.CatTipoNegocioEntity;
 import com.hazloakki.negocio.repository.CatTipoNegocioRepository;
 

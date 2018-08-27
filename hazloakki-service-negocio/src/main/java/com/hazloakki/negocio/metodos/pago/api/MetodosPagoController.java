@@ -1,4 +1,4 @@
-package com.hazloakki.negocio.api;
+package com.hazloakki.negocio.metodos.pago.api;
 
 import java.util.List;
 

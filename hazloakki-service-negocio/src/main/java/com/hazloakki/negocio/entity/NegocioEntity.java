@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -55,7 +54,7 @@ public class NegocioEntity implements Serializable {
 	@Column(name = "numero_exterior")
 	private String numeroExterior;
 	@OneToMany
-	@JoinColumn(name = "negociosServiciosKey.idNegocio")
+	@JoinColumn(name = "idNegocio")
 	private List<NegociosServiciosEntity> serviciosNegocios;
 	
 

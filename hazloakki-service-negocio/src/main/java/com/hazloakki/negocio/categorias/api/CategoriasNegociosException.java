@@ -1,4 +1,4 @@
-package com.hazloakki.negocio.api;
+package com.hazloakki.negocio.categorias.api;
 
 public class CategoriasNegociosException extends RuntimeException {
 	private final String id;

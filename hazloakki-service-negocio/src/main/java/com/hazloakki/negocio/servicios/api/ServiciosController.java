@@ -1,4 +1,4 @@
-package com.hazloakki.negocio.api;
+package com.hazloakki.negocio.servicios.api;
 
 import java.util.List;
 
