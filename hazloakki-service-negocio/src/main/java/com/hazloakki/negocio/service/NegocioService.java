@@ -14,7 +14,7 @@ import com.hazloakki.negocio.service.remotos.OfertaDto;
 public interface NegocioService {
 
 	NegocioEntity guardarNegocio(NegocioDto cuentaDto);
-	NegocioEntity obtenerNegocio(String idNegocio);
+	NegocioDto obtenerNegocio(String idNegocio);
 	NegocioEntity modificaNegocio(String idNegocio,NegocioDto cuentaDto);
 	void borrarNegocio(String idNegocio);
 	

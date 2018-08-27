@@ -1,5 +1,6 @@
 package com.hazloakki.negocio.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -43,19 +44,23 @@ public class NegocioServiceImpl implements NegocioService {
 	private NegocioMetodoPagoRepository negocioMetodoPagoRepository;
 	@Autowired
 	private NegocioTarjetasPagoRepository negocioTarjetasPagoRepository;
+	
+	
 
 	@Transactional
 	@Override
 	public NegocioEntity guardarNegocio(NegocioDto negocioDto) {
 		NegocioEntity negocioEntity = NegocioEntity.from(negocioDto);
 
+		NegocioEntity negocioEntity2 = negocioRepository.save(negocioEntity);
+
 		/*
 		 * Servicios por negocio
 		 */
 
-		for (ServiciosDto serviciosDto : negocioDto.getServiciosDtos()) {
+		for (ServiciosDto serviciosDto : negocioDto.getServiciosList()) {
 			NegociosServiciosKey serviciosKey = new NegociosServiciosKey();
-			serviciosKey.setIdNegocio(negocioDto.getId());
+			serviciosKey.setIdNegocio(negocioEntity2.getId());
 			serviciosKey.setIdServicio(serviciosDto.getId());
 
 			NegociosServiciosEntity serviciosEntity = new NegociosServiciosEntity();
@@ -67,9 +72,9 @@ public class NegocioServiceImpl implements NegocioService {
 		 * Metodos de pago por negocio
 		 */
 
-		for (MetodoPagoDto metodoPago : negocioDto.getMetodoPagoDtos()) {
+		for (MetodoPagoDto metodoPago : negocioDto.getMetodoPagoList()) {
 			NegocioMetodoPagoKey metodoPagoKey = new NegocioMetodoPagoKey();
-			metodoPagoKey.setIdNegocio(negocioDto.getId());
+			metodoPagoKey.setIdNegocio(negocioEntity2.getId());
 			metodoPagoKey.setIdPago(metodoPago.getId());
 
 			MetodoPagoEntity negocioMetodoPagoEntity = new MetodoPagoEntity();
@@ -80,11 +85,11 @@ public class NegocioServiceImpl implements NegocioService {
 		/*
 		 * Tipos de tarjeta por negocio
 		 */
-		for (TipoTarjetaDto tipoTarjetaDto : negocioDto.getTipoTarjetaDtos()) {
+		for (TipoTarjetaDto tipoTarjetaDto : negocioDto.getTipoTarjetaList()) {
 
 			NegociosTarjetasPagoEntity tarjetasPagoEntity = new NegociosTarjetasPagoEntity();
 			NegociosTarjetasPagoKey tarjetasPagoKey = new NegociosTarjetasPagoKey();
-			tarjetasPagoKey.setIdNegocio(negocioDto.getId());
+			tarjetasPagoKey.setIdNegocio(negocioEntity2.getId());
 			tarjetasPagoKey.setIdTarjeta(tipoTarjetaDto.getId());
 
 			tarjetasPagoEntity.setNegociosTarjetasPagoKey(tarjetasPagoKey);
@@ -93,15 +98,62 @@ public class NegocioServiceImpl implements NegocioService {
 
 		}
 
-		return negocioRepository.save(negocioEntity);
+		return negocioEntity2;
 	}
 
 	@Override
-	public NegocioEntity obtenerNegocio(String idNegocio) {
-		return negocioRepository.findById(idNegocio)
+	public NegocioDto obtenerNegocio(String idNegocio) {
+		
+		NegocioEntity negocioEntity = negocioRepository.findById(idNegocio)
 				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
+		
+		 List<ServiciosDto> serviciosList = new ArrayList<>();
+		 List<MetodoPagoDto> metodoPagoList = new ArrayList<>();
+		 List<TipoTarjetaDto> tipoTarjetaList = new ArrayList<>();
+		 
+	 
+		NegocioDto negocioDto = negocioEntity.to();
+			negocioDto.setServiciosList(serviciosList);
+			negocioDto.setMetodoPagoList(metodoPagoList);
+			negocioDto.setTipoTarjetaList(tipoTarjetaList);
 
+		return negocioDto;
 	}
+	/*
+	 *  ServiciosDto serviciosDto = new ServiciosDto();
+		 	serviciosDto.setId("1");
+		 	serviciosDto.setNombre("servicio a domicilio");
+		 	serviciosDto.setDescripcion("te llevan tus solicitudes a casa");
+		 	serviciosList.add(serviciosDto);
+		 	
+		 	serviciosDto = new ServiciosDto();
+		 	serviciosDto.setId("2");
+		 	serviciosDto.setNombre("estacionamiento");
+		 	serviciosDto.setDescripcion("zona para estacionarse");
+		 	serviciosList.add(serviciosDto);
+		 	
+		
+		 	MetodoPagoDto pagoDto = new MetodoPagoDto();
+			 	pagoDto.setId("1");
+			 	pagoDto.setNombre("pago efectivo");
+			 	pagoDto.setDescripcion("pagos realizados en efectivo");
+			 	metodoPagoList.add(pagoDto);
+			 	
+			
+			TipoTarjetaDto tipoTarjetaDto = new TipoTarjetaDto();
+				tipoTarjetaDto.setId("1");
+				tipoTarjetaDto.setNombre("visa");
+				tipoTarjetaDto.setDescripcion("tarjetas de tipo visa");
+				tipoTarjetaList.add(tipoTarjetaDto);
+			
+			tipoTarjetaDto = new TipoTarjetaDto();
+				tipoTarjetaDto.setId("2");
+				tipoTarjetaDto.setNombre("master-card");
+				tipoTarjetaDto.setDescripcion("tarjetas de tipo mastercard");
+				tipoTarjetaList.add(tipoTarjetaDto);
+			 	(non-Javadoc)
+	 * @see com.hazloakki.negocio.service.NegocioService#modificaNegocio(java.lang.String, com.hazloakki.negocio.modelo.NegocioDto)
+	 */
 
 	@Transactional
 	@Override

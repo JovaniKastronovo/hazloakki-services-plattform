@@ -40,7 +40,7 @@ public class NegocioController {
 	 */
 	@GetMapping("/{id}")
 	public NegocioDto redNegocio(@PathVariable("id") String idNegocio) {
-		return cuentaService.obtenerNegocio(idNegocio).to();
+		return cuentaService.obtenerNegocio(idNegocio);
 	}
 	
 	

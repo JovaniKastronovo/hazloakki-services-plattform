@@ -1,5 +1,6 @@
 package com.hazloakki.negocio.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ public class NegocioDto {
 	private String calle;
 	private String numeroExterior;
 	private boolean estatus;
-	private List<ServiciosDto> serviciosDtos;
-	private List<MetodoPagoDto> metodoPagoDtos;
-	private List<TipoTarjetaDto> tipoTarjetaDtos;
+	private List<ServiciosDto> serviciosList = new ArrayList<>();
+	private List<MetodoPagoDto> metodoPagoList = new ArrayList<>();
+	private List<TipoTarjetaDto> tipoTarjetaList = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -148,36 +149,36 @@ public class NegocioDto {
 		this.numeroExterior = numeroExterior;
 	}
 
-	public List<ServiciosDto> getServiciosDtos() {
-		return serviciosDtos;
-	}
-
-	public void setServiciosDtos(List<ServiciosDto> serviciosDtos) {
-		this.serviciosDtos = serviciosDtos;
-	}
-
-	public List<MetodoPagoDto> getMetodoPagoDtos() {
-		return metodoPagoDtos;
-	}
-
-	public void setMetodoPagoDtos(List<MetodoPagoDto> metodoPagoDtos) {
-		this.metodoPagoDtos = metodoPagoDtos;
-	}
-
-	public List<TipoTarjetaDto> getTipoTarjetaDtos() {
-		return tipoTarjetaDtos;
-	}
-
-	public void setTipoTarjetaDtos(List<TipoTarjetaDto> tipoTarjetaDtos) {
-		this.tipoTarjetaDtos = tipoTarjetaDtos;
-	}
-
 	public boolean isEstatus() {
 		return estatus;
 	}
 
 	public void setEstatus(boolean estatus) {
 		this.estatus = estatus;
+	}
+
+	public List<ServiciosDto> getServiciosList() {
+		return serviciosList;
+	}
+
+	public void setServiciosList(List<ServiciosDto> serviciosList) {
+		this.serviciosList = serviciosList;
+	}
+
+	public List<MetodoPagoDto> getMetodoPagoList() {
+		return metodoPagoList;
+	}
+
+	public void setMetodoPagoList(List<MetodoPagoDto> metodoPagoList) {
+		this.metodoPagoList = metodoPagoList;
+	}
+
+	public List<TipoTarjetaDto> getTipoTarjetaList() {
+		return tipoTarjetaList;
+	}
+
+	public void setTipoTarjetaList(List<TipoTarjetaDto> tipoTarjetaList) {
+		this.tipoTarjetaList = tipoTarjetaList;
 	}
 
 }

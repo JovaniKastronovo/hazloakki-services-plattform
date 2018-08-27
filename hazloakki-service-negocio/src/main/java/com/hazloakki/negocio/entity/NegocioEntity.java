@@ -1,11 +1,15 @@
 package com.hazloakki.negocio.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -42,18 +46,7 @@ public class NegocioEntity implements Serializable {
 	private String domicilio;
 	private Double latitud;
 	private Double longitud;
-	@Column(name = "id_metodo_pago")
-	private Integer idMetodoPago;
-	@Column(name = "tarjeta_credito")
-	private String tipoTarjetCredito;
-	@Column(name = "servicio_domicilio")
-	private boolean servicioDomicilio;
-	private boolean estacionamiento;
-	private boolean internet;
-	private boolean reservaciones;
 	private boolean estatus;
-	@Column(name = "modo_llevar")
-	private boolean modoLlevar;
 	@Column(name = "codigo_postal")
 	private String codigoPostal;
 	private String delegacion;
@@ -61,6 +54,10 @@ public class NegocioEntity implements Serializable {
 	private String calle;
 	@Column(name = "numero_exterior")
 	private String numeroExterior;
+	@OneToMany
+	@JoinColumn(name = "negociosServiciosKey.idNegocio")
+	private List<NegociosServiciosEntity> serviciosNegocios;
+	
 
 	public static NegocioEntity from(NegocioDto cuentaDto) {
 
@@ -121,6 +118,14 @@ public class NegocioEntity implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getIdCuenta() {
+		return idCuenta;
+	}
+
+	public void setIdCuenta(String idCuenta) {
+		this.idCuenta = idCuenta;
 	}
 
 	public String getNombre() {
@@ -187,76 +192,12 @@ public class NegocioEntity implements Serializable {
 		this.longitud = longitud;
 	}
 
-	public Integer getIdMetodoPago() {
-		return idMetodoPago;
-	}
-
-	public void setIdMetodoPago(Integer idMetodoPago) {
-		this.idMetodoPago = idMetodoPago;
-	}
-
-	public String getTipoTarjetCredito() {
-		return tipoTarjetCredito;
-	}
-
-	public void setTipoTarjetCredito(String tipoTarjetCredito) {
-		this.tipoTarjetCredito = tipoTarjetCredito;
-	}
-
-	public boolean isServicioDomicilio() {
-		return servicioDomicilio;
-	}
-
-	public void setServicioDomicilio(boolean servicioDomicilio) {
-		this.servicioDomicilio = servicioDomicilio;
-	}
-
-	public boolean isEstacionamiento() {
-		return estacionamiento;
-	}
-
-	public void setEstacionamiento(boolean estacionamiento) {
-		this.estacionamiento = estacionamiento;
-	}
-
-	public boolean isInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
-	}
-
-	public boolean isReservaciones() {
-		return reservaciones;
-	}
-
-	public void setReservaciones(boolean reservaciones) {
-		this.reservaciones = reservaciones;
-	}
-
 	public boolean isEstatus() {
 		return estatus;
 	}
 
 	public void setEstatus(boolean estatus) {
 		this.estatus = estatus;
-	}
-
-	public boolean isModoLlevar() {
-		return modoLlevar;
-	}
-
-	public void setModoLlevar(boolean modoLlevar) {
-		this.modoLlevar = modoLlevar;
-	}
-
-	public String getIdCuenta() {
-		return idCuenta;
-	}
-
-	public void setIdCuenta(String idCuenta) {
-		this.idCuenta = idCuenta;
 	}
 
 	public String getCodigoPostal() {
@@ -298,5 +239,15 @@ public class NegocioEntity implements Serializable {
 	public void setNumeroExterior(String numeroExterior) {
 		this.numeroExterior = numeroExterior;
 	}
+
+	public List<NegociosServiciosEntity> getServiciosNegocios() {
+		return serviciosNegocios;
+	}
+
+	public void setServiciosNegocios(List<NegociosServiciosEntity> serviciosNegocios) {
+		this.serviciosNegocios = serviciosNegocios;
+	}
+	
+	
 
 }
