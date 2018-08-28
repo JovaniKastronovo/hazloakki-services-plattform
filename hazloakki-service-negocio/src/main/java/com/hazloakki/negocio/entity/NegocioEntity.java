@@ -26,9 +26,6 @@ import com.hazloakki.negocio.modelo.NegocioDto;
 public class NegocioEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@Version
-	private Long version;
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -103,13 +100,7 @@ public class NegocioEntity implements Serializable {
 		return negocioDto;
 	}
 
-	public Long getVersion() {
-		return version;
-	}
 
-	public void setVersion(Long version) {
-		this.version = version;
-	}
 
 	public String getId() {
 		return id;

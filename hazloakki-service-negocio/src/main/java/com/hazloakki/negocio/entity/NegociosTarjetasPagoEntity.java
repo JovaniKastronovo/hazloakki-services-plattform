@@ -9,8 +9,6 @@ import javax.persistence.Version;
 @Table(name="negocios_tarjetas")
 public class NegociosTarjetasPagoEntity {
 
-	@Version
-	private Long version;
 	@EmbeddedId
 	private NegociosTarjetasPagoKey negociosTarjetasPagoKey;
 

@@ -14,8 +14,7 @@ import com.hazloakki.negocio.modelo.CatTipoNegocioDto;
 @Table(name = "cat_categoria_negocios")
 public class CatTipoNegocioEntity {
 	
-	@Version
-	private Long version;
+
 	@Id
 	@Column(name = "id_categoria")
 	private Integer idCategoria;

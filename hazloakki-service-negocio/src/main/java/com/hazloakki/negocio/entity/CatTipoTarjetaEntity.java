@@ -14,9 +14,6 @@ import com.hazloakki.negocio.modelo.TipoTarjetaDto;
 @Table(name = "cat_tipo_tarjeta")
 public class CatTipoTarjetaEntity {
 
-
-	@Version
-	private Long version;
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")

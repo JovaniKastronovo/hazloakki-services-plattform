@@ -53,51 +53,56 @@ public class NegocioServiceImpl implements NegocioService {
 		NegocioEntity negocioEntity = NegocioEntity.from(negocioDto);
 
 		NegocioEntity negocioEntity2 = negocioRepository.save(negocioEntity);
+		
+		try {
+			/*
+			 * Servicios por negocio
+			 */
 
-		/*
-		 * Servicios por negocio
-		 */
+			for (ServiciosDto serviciosDto : negocioDto.getServiciosList()) {
+				NegociosServiciosKey serviciosKey = new NegociosServiciosKey();
+				serviciosKey.setIdNegocio(negocioEntity2.getId());
+				serviciosKey.setIdServicio(serviciosDto.getId());
 
-		for (ServiciosDto serviciosDto : negocioDto.getServiciosList()) {
-			NegociosServiciosKey serviciosKey = new NegociosServiciosKey();
-			serviciosKey.setIdNegocio(negocioEntity2.getId());
-			serviciosKey.setIdServicio(serviciosDto.getId());
+				NegociosServiciosEntity serviciosEntity = new NegociosServiciosEntity();
+				serviciosEntity.setNegociosServiciosKey(serviciosKey);
+				negocioServiciosRepository.save(serviciosEntity);
+			}
 
-			NegociosServiciosEntity serviciosEntity = new NegociosServiciosEntity();
-			serviciosEntity.setNegociosServiciosKey(serviciosKey);
-			negocioServiciosRepository.save(serviciosEntity);
+			/*
+			 * Metodos de pago por negocio
+			 */
+
+			for (MetodoPagoDto metodoPago : negocioDto.getMetodoPagoList()) {
+				NegocioMetodoPagoKey metodoPagoKey = new NegocioMetodoPagoKey();
+				metodoPagoKey.setIdNegocio(negocioEntity2.getId());
+				metodoPagoKey.setIdPago(metodoPago.getId());
+
+				MetodoPagoEntity negocioMetodoPagoEntity = new MetodoPagoEntity();
+				negocioMetodoPagoEntity.setNegocioMetodoPagoKey(metodoPagoKey);
+				negocioMetodoPagoRepository.save(negocioMetodoPagoEntity);
+			}
+
+			/*
+			 * Tipos de tarjeta por negocio
+			 */
+			for (TipoTarjetaDto tipoTarjetaDto : negocioDto.getTipoTarjetaList()) {
+
+				NegociosTarjetasPagoEntity tarjetasPagoEntity = new NegociosTarjetasPagoEntity();
+				NegociosTarjetasPagoKey tarjetasPagoKey = new NegociosTarjetasPagoKey();
+				tarjetasPagoKey.setIdNegocio(negocioEntity2.getId());
+				tarjetasPagoKey.setIdTarjeta(tipoTarjetaDto.getId());
+
+				tarjetasPagoEntity.setNegociosTarjetasPagoKey(tarjetasPagoKey);
+
+				negocioTarjetasPagoRepository.save(tarjetasPagoEntity);
+
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-
-		/*
-		 * Metodos de pago por negocio
-		 */
-
-		for (MetodoPagoDto metodoPago : negocioDto.getMetodoPagoList()) {
-			NegocioMetodoPagoKey metodoPagoKey = new NegocioMetodoPagoKey();
-			metodoPagoKey.setIdNegocio(negocioEntity2.getId());
-			metodoPagoKey.setIdPago(metodoPago.getId());
-
-			MetodoPagoEntity negocioMetodoPagoEntity = new MetodoPagoEntity();
-			negocioMetodoPagoEntity.setNegocioMetodoPagoKey(metodoPagoKey);
-			negocioMetodoPagoRepository.save(negocioMetodoPagoEntity);
-		}
-
-		/*
-		 * Tipos de tarjeta por negocio
-		 */
-		for (TipoTarjetaDto tipoTarjetaDto : negocioDto.getTipoTarjetaList()) {
-
-			NegociosTarjetasPagoEntity tarjetasPagoEntity = new NegociosTarjetasPagoEntity();
-			NegociosTarjetasPagoKey tarjetasPagoKey = new NegociosTarjetasPagoKey();
-			tarjetasPagoKey.setIdNegocio(negocioEntity2.getId());
-			tarjetasPagoKey.setIdTarjeta(tipoTarjetaDto.getId());
-
-			tarjetasPagoEntity.setNegociosTarjetasPagoKey(tarjetasPagoKey);
-
-			negocioTarjetasPagoRepository.save(tarjetasPagoEntity);
-
-		}
-
+		
 		return negocioEntity2;
 	}
 

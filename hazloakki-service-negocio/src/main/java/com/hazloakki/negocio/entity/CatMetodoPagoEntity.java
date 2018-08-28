@@ -14,8 +14,7 @@ import com.hazloakki.negocio.modelo.MetodoPagoDto;
 @Table(name = "cat_metodo_pago")
 public class CatMetodoPagoEntity {
 
-	@Version
-	private Long version;
+
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -35,13 +34,6 @@ public class CatMetodoPagoEntity {
 		return metodoPagoDto;
 	}
 
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
 
 	public String getId() {
 		return id;

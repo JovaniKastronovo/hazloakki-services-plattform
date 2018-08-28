@@ -15,8 +15,7 @@ import com.hazloakki.negocio.modelo.ServiciosDto;
 @Table(name = "cat_servicios")
 public class CatServiciosEntity {
 
-	@Version
-	private Long version;
+
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")

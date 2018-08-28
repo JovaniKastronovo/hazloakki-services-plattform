@@ -11,8 +11,7 @@ import com.hazloakki.negocio.modelo.ServiciosDto;
 @Table(name = "negocios_servicios")
 public class NegociosServiciosEntity {
 
-	@Version
-	private Long version;
+
 	@EmbeddedId
 	private NegociosServiciosKey negociosServiciosKey;
 
